@@ -1,0 +1,57 @@
+[debug] [2023-06-16T10:38:16.448Z] ----------------------------------------------------------------------
+[debug] [2023-06-16T10:38:16.450Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hp\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-06-16T10:38:16.451Z] CLI Version:   12.4.0
+[debug] [2023-06-16T10:38:16.451Z] Platform:      win32
+[debug] [2023-06-16T10:38:16.452Z] Node Version:  v16.17.1
+[debug] [2023-06-16T10:38:16.453Z] Time:          Fri Jun 16 2023 15:38:16 GMT+0500 (Pakistan Standard Time)
+[debug] [2023-06-16T10:38:16.453Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-06-16T10:38:16.462Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-06-16T10:38:16.463Z] > authorizing via signed-in user (mafivs51@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Woit\drags
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-06-16T10:39:35.841Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2023-06-16T10:39:36.658Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2023-06-16T10:39:36.659Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project drags-1d298 (drags) 
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2023-06-16T10:39:38.857Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com [none]
+[debug] [2023-06-16T10:39:38.857Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com x-goog-quota-user=projects/drags-1d298
+[debug] [2023-06-16T10:39:40.704Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com 200
+[debug] [2023-06-16T10:39:40.704Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com [omitted]
+[warn] !  database: missing required API firebasedatabase.googleapis.com. Enabling now... 
+[debug] [2023-06-16T10:39:40.708Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com:enable [none]
+[debug] [2023-06-16T10:39:40.708Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com:enable x-goog-quota-user=projects/drags-1d298
+[debug] [2023-06-16T10:39:43.121Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com:enable 200
+[debug] [2023-06-16T10:39:43.122Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com:enable [omitted]
+[debug] [2023-06-16T10:39:53.131Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com [none]
+[debug] [2023-06-16T10:39:53.132Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com x-goog-quota-user=projects/drags-1d298
+[debug] [2023-06-16T10:39:54.820Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com 200
+[debug] [2023-06-16T10:39:54.821Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/drags-1d298/services/firebasedatabase.googleapis.com [omitted]
+[info] +  database: required API firebasedatabase.googleapis.com is enabled 
+[info] 
+[debug] [2023-06-16T10:39:54.850Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/drags-1d298 [none]
+[debug] [2023-06-16T10:39:55.382Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/drags-1d298 200
+[debug] [2023-06-16T10:39:55.383Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/drags-1d298 {"projectId":"drags-1d298","projectNumber":"519013187721","displayName":"drags","name":"projects/drags-1d298","resources":{"hostingSite":"drags-1d298"},"state":"ACTIVE","etag":"1_4418c242-80a2-4357-8a81-cd848108b9c0"}
+[info] 
+[info] Firebase Realtime Database Security Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
