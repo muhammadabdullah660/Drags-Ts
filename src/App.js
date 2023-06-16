@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./categories.scss";
 function App() {
   const categories = [
     {
@@ -17,18 +18,16 @@ function App() {
     { id: 5, title: "Mens" },
   ];
   return (
-    <div className="container-fluid">
-      <div className="row">
-        {categories.map((category) => {
-          return (
-            <div className="col-md-4 category-body-container">
-              <div></div>
-              <h3>{category.title}</h3>
-              <p>Shop Now</p>
-            </div>
-          );
-        })}
-      </div>
+    <div className="categories-container">
+      {categories.map(({ title, id }) => (
+        <div key={id} className="category-container">
+          <div className="background-image" />
+          <div className="category-body-container">
+            <h2>{title}</h2>
+            <p>Shop Now</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
