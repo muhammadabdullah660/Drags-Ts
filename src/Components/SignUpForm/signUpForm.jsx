@@ -55,7 +55,6 @@ export default function SignUpForm() {
           name="displayName"
           required
           type="text"
-          placeholder="Display Name"
           value={displayName}
           onChange={handleChange}
         />
@@ -64,7 +63,6 @@ export default function SignUpForm() {
           required
           name="email"
           type="email"
-          placeholder="Email"
           value={email}
           onChange={handleChange}
         />
@@ -73,7 +71,6 @@ export default function SignUpForm() {
           label={"Password"}
           type="password"
           name="password"
-          placeholder="Password"
           value={password}
           onChange={handleChange}
         />
@@ -82,7 +79,6 @@ export default function SignUpForm() {
           label={"Confirm Password"}
           name="confirmPassword"
           type="password"
-          placeholder="Confirm Password"
           value={confirmPassword}
           onChange={handleChange}
         />
