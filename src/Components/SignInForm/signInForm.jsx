@@ -74,7 +74,11 @@ export default function SignInForm() {
           <Button button={"default"} type="submit">
             Sign In
           </Button>
-          <Button button={"googleSignIn"} onClick={logGoogleUserPopup}>
+          <Button
+            type="button"
+            button={"googleSignIn"}
+            onClick={logGoogleUserPopup}
+          >
             Google Sign In
           </Button>
         </div>

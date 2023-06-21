@@ -83,7 +83,7 @@ export default function SignUpForm() {
           value={confirmPassword}
           onChange={handleChange}
         />
-        <Button button={"googleSignIn"} type="submit">
+        <Button button={"default"} type="submit">
           Sign Up
         </Button>
       </form>
