@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 // Your web app's Firebase configuration
@@ -54,8 +55,6 @@ export const createUserProfileDocumentFromAuth = async (
     } catch (error) {
       console.log(error);
     }
-  } else {
-    alert("user already exists");
   }
 };
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -65,4 +64,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
+};
+export const signOutAuthUser = async () => {
+  return await signOut(auth);
 };
