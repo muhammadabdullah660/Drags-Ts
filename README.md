@@ -1,6 +1,6 @@
 # Drags - E-commerce Store
 
-![Drags Logo](/path/to/logo.png)
+![Drags Logo](./src/assests/crown.svg)
 
 Drags is a React-based e-commerce store project aimed at providing a user-friendly interface for online shopping. The project utilizes modern web development technologies and follows best practices to create an engaging and responsive online shopping experience.
 

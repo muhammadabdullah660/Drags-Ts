@@ -13,7 +13,7 @@ export default function NavigationBar() {
           <Link to="/shop" className="nav-link">
             SHOP
           </Link>
-          <Link to="/signIn" className="nav-link">
+          <Link to="/auth" className="nav-link">
             SIGN IN
           </Link>
         </div>
