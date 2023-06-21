@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   createUserProfileDocumentFromAuth,
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/Firebase/firebase";
-
+import { UserContext } from "../../Contexts/userContext";
 import FormInput from "../FormInput/formInput";
 import "./signInForm.scss";
 import Button from "../Button/button";
 export default function SignInForm() {
+  const { setCurrentUser } = useContext(UserContext);
   const defaultFormFields = {
     email: "",
     password: "",
@@ -20,17 +21,15 @@ export default function SignInForm() {
     setFormFields({ ...formFields, [name]: value });
   };
   const handleSubmit = async (event) => {
-    //console.log("submit");
     event.preventDefault();
 
     try {
-      //console.log("try");
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
+      setCurrentUser(user);
       setFormFields(defaultFormFields);
-      console.log(response);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         alert("User not found " + error.message);
@@ -45,6 +44,7 @@ export default function SignInForm() {
     try {
       const response = await signInWithGooglePopup();
       createUserProfileDocumentFromAuth(response.user);
+      setCurrentUser(response.user);
     } catch (error) {
       console.log(error);
     }
