@@ -2,8 +2,8 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithPopup,
-  signInWithRedirect,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 // Your web app's Firebase configuration
@@ -17,6 +17,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+// eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
@@ -25,13 +26,14 @@ export const auth = getAuth();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
-export const signInWithGoogleRedirect = () =>
-  signInWithRedirect(auth, googleProvider);
-
 export const db = getFirestore();
 
 //to create a user profile document in firestore
-export const createUserProfileDocumentFromAuth = async (userAuth) => {
+export const createUserProfileDocumentFromAuth = async (
+  userAuth,
+  additionalInfo = {}
+) => {
+  if (!userAuth) return;
   //to check if the user is signed in
   const userDocRef = doc(db, "users", userAuth.uid);
   const userDocSnap = await getDoc(userDocRef);
@@ -45,9 +47,17 @@ export const createUserProfileDocumentFromAuth = async (userAuth) => {
         displayName,
         email,
         createdAt,
+        ...additionalInfo,
       });
+      alert("Account created successfully");
     } catch (error) {
       console.log(error);
     }
+  } else {
+    alert("user already exists");
   }
+};
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
