@@ -1,6 +1,5 @@
 import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { ReactComponent as Crwnlogo } from "..//..//Assests//crown.svg";
 import "./navigationBar.scss";
 import CartIcon from "../../Components/CartIcon/cartIcon";
 import CartDropDown from "../../Components/CartDropDown/cartDropDown";
@@ -16,7 +15,7 @@ export default function NavigationBar() {
     <Fragment>
       <div className="navigation">
         <Link className="logo-container" to="/">
-          <Crwnlogo className="logo" />
+          <img src="/Assests/crown.svg" alt="crown" className="logo" />
         </Link>
         <div className="nav-links-container">
           <Link to="/shop" className="nav-link">
