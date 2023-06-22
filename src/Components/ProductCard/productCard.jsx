@@ -3,10 +3,10 @@ import "./productCard.scss";
 import { useContext } from "react";
 import { CartContext } from "../../Contexts/cartcontext";
 export default function ProductCard({ product }) {
-  const { addIntoCart } = useContext(CartContext);
+  const { addItemsIntoCart } = useContext(CartContext);
   const { name, price, imageUrl } = product;
   const addProductToCart = () => {
-    addIntoCart(product);
+    addItemsIntoCart(product);
   };
   return (
     <div className="productCardContainer">
