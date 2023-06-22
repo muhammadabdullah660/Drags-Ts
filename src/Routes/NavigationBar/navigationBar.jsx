@@ -15,7 +15,7 @@ export default function NavigationBar() {
     <Fragment>
       <div className="navigation">
         <Link className="logo-container" to="/">
-          <img src="/Assests/crown.svg" alt="crown" className="logo" />
+          <img src="/Assests/crown.svg" alt="Crown" className="logo" />
         </Link>
         <div className="nav-links-container">
           <Link to="/shop" className="nav-link">
