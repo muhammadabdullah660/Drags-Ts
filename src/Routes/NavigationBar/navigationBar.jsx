@@ -5,10 +5,12 @@ import "./navigationBar.scss";
 import CartIcon from "../../Components/CartIcon/cartIcon";
 import CartDropDown from "../../Components/CartDropDown/cartDropDown";
 import { UserContext } from "../../Contexts/userContext.jsx";
+import { CartContext } from "../../Contexts/cartcontext";
 import { signOutAuthUser } from "../../utils/Firebase/firebase";
 export default function NavigationBar() {
   const { currentUser } = useContext(UserContext);
   //console.log(currentUser);
+  const { isCartOpen } = useContext(CartContext);
 
   return (
     <Fragment>
@@ -31,7 +33,7 @@ export default function NavigationBar() {
           )}
           <CartIcon />
         </div>
-        <CartDropDown />
+        {isCartOpen && <CartDropDown />}
       </div>
       <Outlet />
     </Fragment>
