@@ -1,7 +1,9 @@
 import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { ReactComponent as Crwnlogo } from "../../assests/crown.svg";
+import { ReactComponent as Crwnlogo } from "../../Assests/crown.svg";
 import "./navigationBar.scss";
+import CartIcon from "../../Components/CartIcon/cartIcon";
+import CartDropDown from "../../Components/CartDropDown/cartDropDown";
 import { UserContext } from "../../Contexts/userContext.jsx";
 import { signOutAuthUser } from "../../utils/Firebase/firebase";
 export default function NavigationBar() {
@@ -27,7 +29,9 @@ export default function NavigationBar() {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
+        <CartDropDown />
       </div>
       <Outlet />
     </Fragment>
