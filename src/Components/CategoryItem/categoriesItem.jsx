@@ -3,14 +3,14 @@ import "./categoriesItem.scss";
 export default function CategoriesItem({ category }) {
   const { title, imageUrl, id } = category;
   return (
-    <div key={id} className="category-container">
+    <div key={id} className="categoryItemContainer">
       <div
-        className="background-image"
+        className="backgroundImage"
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      <div className="category-body-container">
+      <div className="categorItemBody">
         <h2>{title.toUpperCase()}</h2>
         <p>Shop Now</p>
       </div>
