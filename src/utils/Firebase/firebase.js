@@ -8,7 +8,16 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCp4-tX7NOnzNMa2I0ROq61tYcCUKH9GUs",
@@ -30,7 +39,34 @@ export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
 export const db = getFirestore();
-
+// to add collection and documents to firestore
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  //to get a collection reference
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+  objectsToAdd.forEach((object) => {
+    //to get a new document reference
+    const newDocRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(newDocRef, object);
+  });
+  return await batch.commit();
+};
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  // query: A Query refers to a Query which you can read or listen to. You can also construct refined Query objects by adding filters and ordering.
+  const q = query(collectionRef);
+  // querySnapshot: A QuerySnapshot contains zero or more DocumentSnapshot objects representing the results of a query. The documents can be accessed as an array via the docs property or enumerated using the forEach method. The number of documents can be determined via the empty and size properties.
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((accumulator, doc) => {
+    const { title, items } = doc.data();
+    accumulator[title.toLowerCase()] = items;
+    return accumulator;
+  }, {});
+  return categoryMap;
+};
 //to create a user profile document in firestore
 export const createUserProfileDocumentFromAuth = async (
   userAuth,
