@@ -1,19 +1,12 @@
-import { useContext } from "react";
-import { CategoriesContext } from "../../Contexts/categoriesContext";
-import CategoryPreview from "../../Components/CategoryPreview/categoryPreview";
+import { Route, Routes } from "react-router-dom";
 import "./shop.scss";
+import CategoriesPreview from "../CategoriesPreview/categoriesPreview";
+import Category from "../Category/category";
 export default function Shop() {
-  const { categoriesMap } = useContext(CategoriesContext);
-  console.log(categoriesMap);
   return (
-    <>
-      {Object.keys(categoriesMap).map((title) => {
-        const categoryItems = categoriesMap[title];
-
-        return (
-          <CategoryPreview key={title} title={title} items={categoryItems} />
-        );
-      })}
-    </>
+    <Routes>
+      <Route index path="/" element={<CategoriesPreview />} />
+      <Route path=":category" element={<Category />} />
+    </Routes>
   );
 }
