@@ -5,6 +5,7 @@ import {
 } from "../../utils/Firebase/firebase";
 import FormInput from "../FormInput/formInput";
 import "./signInForm.scss";
+import { buttonType } from "../Button/button";
 import Button from "../Button/button";
 export default function SignInForm() {
   const defaultFormFields = {
@@ -68,7 +69,7 @@ export default function SignInForm() {
           </Button>
           <Button
             type="button"
-            button={"googleSignIn"}
+            button={buttonType.googleSignIn}
             onClick={logGoogleUserPopup}
           >
             Google Sign In
