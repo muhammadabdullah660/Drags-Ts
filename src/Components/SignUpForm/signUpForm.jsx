@@ -52,7 +52,7 @@ export default function SignUpForm() {
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
-          label={"Display Name"}
+          label="Display Name"
           name="displayName"
           required
           type="text"
@@ -60,7 +60,7 @@ export default function SignUpForm() {
           onChange={handleChange}
         />
         <FormInput
-          label={"Email"}
+          label="Email"
           required
           name="email"
           type="email"
@@ -69,7 +69,7 @@ export default function SignUpForm() {
         />
         <FormInput
           required
-          label={"Password"}
+          label="Password"
           type="password"
           name="password"
           value={password}
@@ -77,7 +77,7 @@ export default function SignUpForm() {
         />
         <FormInput
           required
-          label={"Confirm Password"}
+          label="Confirm Password"
           name="confirmPassword"
           type="password"
           value={confirmPassword}
