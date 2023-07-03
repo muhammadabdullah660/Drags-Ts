@@ -1,3 +1,4 @@
+// this file is the store file which combines all the middlewares in the app and the root reducer
 import { compose, createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import { rootReducer } from "./RootReducer";
