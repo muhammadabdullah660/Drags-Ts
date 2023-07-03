@@ -76,7 +76,7 @@ export const createUserProfileDocumentFromAuth = async (
   //to check if the user is signed in
   const userDocRef = doc(db, "users", userAuth.uid);
   const userDocSnap = await getDoc(userDocRef);
-  console.log(userDocSnap.exists());
+  //console.log(userDocSnap.exists());
   // if the user is not signed in then create a user profile document in firestore
   if (!userDocSnap.exists()) {
     const { displayName, email } = userAuth;
@@ -88,7 +88,7 @@ export const createUserProfileDocumentFromAuth = async (
         createdAt,
         ...additionalInfo,
       });
-      alert("Account created successfully");
+      //alert("Account created successfully");
     } catch (error) {
       console.log(error);
     }
