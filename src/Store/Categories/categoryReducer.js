@@ -6,7 +6,7 @@ export const categoryReducer = (
   state = CATEGORIES_INITIAL_STATE,
   action = {}
 ) => {
-  console.log("categoryReducer", state, action);
+  //console.log("categoryReducer", state, action);
   const { type, payload } = action;
   switch (type) {
     case CATEGORY_ACTION_TYPES.SET_CATEGORIES:

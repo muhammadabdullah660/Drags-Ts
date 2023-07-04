@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 import { createAction } from "../utils/Reducer/reducer";
 const addItems = (cartItems, item) => {
-  console.log("cartItems", cartItems);
+  //console.log("cartItems", cartItems);
   const existingItems = cartItems.find((cartItem) => cartItem.id === item.id);
   if (existingItems) {
     return cartItems.map((cartItem) =>
