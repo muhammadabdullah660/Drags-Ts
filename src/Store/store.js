@@ -10,11 +10,18 @@ const persistConfig = {
   blacklist: ["user"],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const middlewares = [logger];
 //middleware is a function that receives actions in, does something with them, and then passes them out to the root reducer
+const middlewares = [process.env.NODE_ENV === "development" && logger].filter(
+  Boolean
+);
+const composeEnhancers =
+  (process.env.NODE_ENV === "development" &&
+    window &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
 export const store = createStore(
   persistedReducer,
   undefined,
-  compose(applyMiddleware(...middlewares))
+  composeEnhancers(applyMiddleware(...middlewares))
 );
 export const persistor = persistStore(store);
