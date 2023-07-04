@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import { selectCurrentUser } from "./../../Store/User/userSelector";
 import { useSelector } from "react-redux";
@@ -10,12 +10,12 @@ import {
 } from "./navigationBar-style.jsx";
 import CartIcon from "../../Components/CartIcon/cartIcon";
 import CartDropDown from "../../Components/CartDropDown/cartDropDown";
-import { CartContext } from "../../Contexts/cartcontext";
 import { signOutAuthUser } from "../../utils/Firebase/firebase";
+import { selectIsCartOpen } from "../../Store/Cart/cartSelector";
 export default function NavigationBar() {
   const currentUser = useSelector(selectCurrentUser);
-  console.log(currentUser);
-  const { isCartOpen } = useContext(CartContext);
+  //console.log(currentUser);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   return (
     <Fragment>
