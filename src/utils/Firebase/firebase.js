@@ -60,12 +60,7 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
   // querySnapshot: A QuerySnapshot contains zero or more DocumentSnapshot objects representing the results of a query. The documents can be accessed as an array via the docs property or enumerated using the forEach method. The number of documents can be determined via the empty and size properties.
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((accumulator, doc) => {
-    const { title, items } = doc.data();
-    accumulator[title.toLowerCase()] = items;
-    return accumulator;
-  }, {});
-  return categoryMap;
+  return querySnapshot.docs.map((doc) => doc.data());
 };
 //to create a user profile document in firestore
 export const createUserProfileDocumentFromAuth = async (

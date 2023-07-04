@@ -9,3 +9,4 @@ export const rootReducer = combineReducers({
   // directory: directoryReducer,
   // shop: shopReducer,
 });
+// whenever an action is dispatched, all the reducers are called
