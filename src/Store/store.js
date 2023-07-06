@@ -3,6 +3,7 @@ import { compose, createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
+import thunk from "redux-thunk";
 import { rootReducer } from "./RootReducer";
 const persistConfig = {
   key: "root",
@@ -11,9 +12,10 @@ const persistConfig = {
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 //middleware is a function that receives actions in, does something with them, and then passes them out to the root reducer
-const middlewares = [process.env.NODE_ENV === "development" && logger].filter(
-  Boolean
-);
+const middlewares = [
+  process.env.NODE_ENV === "development" && logger,
+  thunk,
+].filter(Boolean);
 const composeEnhancers =
   (process.env.NODE_ENV === "development" &&
     window &&
