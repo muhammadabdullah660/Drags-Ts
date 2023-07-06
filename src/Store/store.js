@@ -8,7 +8,7 @@ import { rootReducer } from "./RootReducer";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user"],
+  whitelist: ["cart"],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 //middleware is a function that receives actions in, does something with them, and then passes them out to the root reducer

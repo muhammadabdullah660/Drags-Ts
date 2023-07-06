@@ -17,5 +17,10 @@ export const selectCategoriesMap = createSelector(
   }
 );
 
+export const selectIsLoading = createSelector(
+  [selectCategoryReducer],
+  (category) => category.isLoading
+);
+
 //the selector function is called with the entire state object
 //the selector file is where we write the business logic to get the desired state
