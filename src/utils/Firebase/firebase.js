@@ -65,29 +65,29 @@ export const getCategoriesAndDocuments = async () => {
 //to create a user profile document in firestore
 export const createUserProfileDocumentFromAuth = async (
   userAuth,
-  additionalInfo = {}
+  additionalInformation = {}
 ) => {
   if (!userAuth) return;
-  //to check if the user is signed in
-  const userDocRef = doc(db, "users", userAuth.uid);
-  const userDocSnap = await getDoc(userDocRef);
-  //console.log(userDocSnap.exists());
-  // if the user is not signed in then create a user profile document in firestore
-  if (!userDocSnap.exists()) {
+  const userDocRef = doc(db, "users", userAuth.uid); //issue: userAuth.uid is undefined
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
+
     try {
       await setDoc(userDocRef, {
         displayName,
         email,
         createdAt,
-        ...additionalInfo,
+        ...additionalInformation,
       });
-      //alert("Account created successfully");
     } catch (error) {
-      console.log(error);
+      console.log("error creating the user", error.message);
     }
   }
+
+  return userSnapshot;
 };
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
@@ -103,4 +103,17 @@ export const signOutAuthUser = async () => {
 
 export const onAuthStateChangedListener = (callback) => {
   onAuthStateChanged(auth, callback);
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user) => {
+        unsubscribe();
+        resolve(user);
+      },
+      reject
+    );
+  });
 };
