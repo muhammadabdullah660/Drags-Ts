@@ -3,18 +3,20 @@ import { compose, createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
-import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./rootSaga";
 import { rootReducer } from "./RootReducer";
 const persistConfig = {
   key: "root",
   storage,
   whitelist: ["cart"],
 };
+const sagaMiddleware = createSagaMiddleware();
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 //middleware is a function that receives actions in, does something with them, and then passes them out to the root reducer
 const middlewares = [
   process.env.NODE_ENV === "development" && logger,
-  thunk,
+  sagaMiddleware,
 ].filter(Boolean);
 const composeEnhancers =
   (process.env.NODE_ENV === "development" &&
@@ -26,4 +28,5 @@ export const store = createStore(
   undefined,
   composeEnhancers(applyMiddleware(...middlewares))
 );
+sagaMiddleware.run(rootSaga);
 export const persistor = persistStore(store);
