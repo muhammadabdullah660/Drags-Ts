@@ -27,3 +27,34 @@ export const signInSuccess = (user) => {
 export const signInFailure = (error) => {
   return createAction(USER_ACTION_TYPES.SIGN_IN_FAILURE, error);
 };
+
+export const signOutStart = () => {
+  return createAction(USER_ACTION_TYPES.SIGN_OUT_START);
+};
+
+export const signOutSuccess = () => {
+  return createAction(USER_ACTION_TYPES.SIGN_OUT_SUCCESS);
+};
+
+export const signOutFailure = (error) => {
+  return createAction(USER_ACTION_TYPES.SIGN_OUT_FAILURE, error);
+};
+
+export const signUpStart = (email, password, displayName) => {
+  return createAction(USER_ACTION_TYPES.SIGN_UP_START, {
+    email,
+    password,
+    displayName,
+  });
+};
+
+export const signUpSuccess = ({ user, additionalData }) => {
+  return createAction(USER_ACTION_TYPES.SIGN_UP_SUCCESS, {
+    user,
+    additionalData,
+  });
+};
+
+export const signUpFailure = (error) => {
+  return createAction(USER_ACTION_TYPES.SIGN_UP_FAILURE, error);
+};
