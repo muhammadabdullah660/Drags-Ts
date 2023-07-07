@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import { selectCurrentUser } from "./../../Store/User/userSelector";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   NavigationBarContainer,
   LogoContainer,
@@ -10,13 +10,15 @@ import {
 } from "./navigationBar-style.jsx";
 import CartIcon from "../../Components/CartIcon/cartIcon";
 import CartDropDown from "../../Components/CartDropDown/cartDropDown";
-import { signOutAuthUser } from "../../utils/Firebase/firebase";
+import { signOutStart } from "../../Store/User/userAction";
 import { selectIsCartOpen } from "../../Store/Cart/cartSelector";
 export default function NavigationBar() {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
-  //console.log(currentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
-
+  const onClickSignOut = () => {
+    dispatch(signOutStart());
+  };
   return (
     <Fragment>
       <NavigationBarContainer>
@@ -26,7 +28,7 @@ export default function NavigationBar() {
         <NavLinksContainer>
           <NavLink to="/shop">SHOP</NavLink>
           {currentUser ? ( // if currentUser is not null
-            <NavLink onClick={signOutAuthUser} as="span">
+            <NavLink onClick={onClickSignOut} as="span">
               SIGN OUT
             </NavLink>
           ) : (
