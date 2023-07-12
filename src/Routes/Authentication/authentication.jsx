@@ -1,11 +1,11 @@
 import SignUpForm from "../../Components/SignUpForm/signUpForm.jsx";
 import SignInForm from "../../Components/SignInForm/signInForm.jsx";
-import "./authentication.scss";
+import { AuthenticationContainer } from "./authentication-style.jsx";
 export default function Authentication() {
   return (
-    <div className="authenticationContainer">
+    <AuthenticationContainer>
       <SignInForm />
       <SignUpForm />
-    </div>
+    </AuthenticationContainer>
   );
 }

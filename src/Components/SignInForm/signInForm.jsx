@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./signInForm.scss";
+import { SignInContainer, ButtonsContainer } from "./signInForm-style.jsx";
 import FormInput from "../FormInput/formInput";
 import { buttonType } from "../Button/button";
 import Button from "../Button/button";
@@ -40,7 +40,7 @@ export default function SignInForm() {
     dispatch(googleSignInStart());
   };
   return (
-    <div className="signInContainer">
+    <SignInContainer>
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -60,7 +60,7 @@ export default function SignInForm() {
           value={password}
           onChange={handleChange}
         />
-        <div className="buttonsContainer">
+        <ButtonsContainer>
           <Button button={"default"} type="submit">
             Sign In
           </Button>
@@ -71,8 +71,8 @@ export default function SignInForm() {
           >
             Google Sign In
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 }

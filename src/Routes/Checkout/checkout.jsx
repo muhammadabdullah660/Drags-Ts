@@ -1,6 +1,12 @@
-import "./checkout.scss";
+import {
+  CheckoutContainer,
+  CheckoutHeader,
+  HeaderBlock,
+  Total,
+} from "./checkout-style.jsx";
 import { useSelector } from "react-redux";
 import CheckoutItem from "../../Components/CheckoutItem/checkoutItem";
+import PaymentForm from "../../Components/PaymentForm/paymentForm";
 import {
   selectCartItems,
   selectCartTotal,
@@ -9,28 +15,29 @@ export default function Checkout() {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
   return (
-    <div className="checkoutContainer">
-      <div className="checkoutHeader">
-        <div className="headerBlock">
+    <CheckoutContainer>
+      <CheckoutHeader>
+        <HeaderBlock>
           <span>Product</span>
-        </div>
-        <div className="headerBlock">
+        </HeaderBlock>
+        <HeaderBlock>
           <span>Description</span>
-        </div>
-        <div className="headerBlock">
+        </HeaderBlock>
+        <HeaderBlock>
           <span>Quantity</span>
-        </div>
-        <div className="headerBlock">
+        </HeaderBlock>
+        <HeaderBlock>
           <span>Price</span>
-        </div>
-        <div className="headerBlock">
+        </HeaderBlock>
+        <HeaderBlock>
           <span>Remove</span>
-        </div>
-      </div>
+        </HeaderBlock>
+      </CheckoutHeader>
       {cartItems.map((cartItem) => (
         <CheckoutItem cartItem={cartItem} />
       ))}
-      <span className="total">Total: {cartTotal}</span>
-    </div>
+      <Total>Total: {cartTotal}</Total>
+      <PaymentForm price={cartTotal} />
+    </CheckoutContainer>
   );
 }

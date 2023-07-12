@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUpStart } from "../../Store/User/userAction";
 import FormInput from "../FormInput/formInput";
-import "./signUpForm.scss";
+import { SignUpContainer } from "./signUpForm-style.jsx";
 import Button from "../Button/button";
 export default function SignUpForm() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ export default function SignUpForm() {
     }
   };
   return (
-    <div className="signUpContainer">
+    <SignUpContainer>
       <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -80,6 +80,6 @@ export default function SignUpForm() {
           Sign Up
         </Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 }
