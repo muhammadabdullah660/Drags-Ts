@@ -36,7 +36,7 @@ export default function Checkout() {
       {cartItems.map((cartItem) => (
         <CheckoutItem cartItem={cartItem} />
       ))}
-      <Total>Total: {cartTotal}</Total>
+      <Total>Total: ${cartTotal}</Total>
       <PaymentForm price={cartTotal} />
     </CheckoutContainer>
   );

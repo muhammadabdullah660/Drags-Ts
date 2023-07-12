@@ -29,7 +29,9 @@ const clearItems = (cartItems, item) => {
   //clear the item from cart
   return cartItems.filter((cartItem) => cartItem.id !== item.id);
 };
-
+const emptyItems = () => {
+  return [];
+};
 export const setIsCartOpen = (isCartOpen) => {
   return createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, isCartOpen);
 };
@@ -44,5 +46,9 @@ export const clearItemsFromCart = (cartItems, item) => {
 };
 export const deleteItemsFromCart = (cartItems, item) => {
   const newCartItems = deleteItems(cartItems, item);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
+};
+export const emptyItemsFromCart = () => {
+  const newCartItems = emptyItems();
   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
