@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call } from "redux-saga/effects";
+import { takeLatest, put, all, call } from "typed-redux-saga";
 import { getCategoriesAndDocuments } from "../../utils/Firebase/firebase";
 import {
   fetchCategoriesFailure,
@@ -8,10 +8,11 @@ import { CATEGORY_ACTION_TYPES } from "./categoryActionTypes";
 
 export function* fetchCategoriesAsync() {
   try {
-    const categoriesArray = yield call(getCategoriesAndDocuments, "categories");
-    yield put(fetchCategoriesSuccess(categoriesArray));
+    // the difference between yeild and yield* is that yield* is used to call another generator function
+    const categoriesArray = yield* call(getCategoriesAndDocuments);
+    yield* put(fetchCategoriesSuccess(categoriesArray));
   } catch (error) {
-    yield put(fetchCategoriesFailure(error.message));
+    yield* put(fetchCategoriesFailure(error as Error));
   }
 }
 export function* fetchCategoriesStartSaga() {
