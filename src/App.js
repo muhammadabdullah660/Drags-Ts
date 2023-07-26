@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Home from "./Routes/Home/home.jsx";
-import NavigationBar from "./Routes/NavigationBar/navigationBar.jsx";
-import Authentication from "./Routes/Authentication/authentication.jsx";
-import Checkout from "./Routes/Checkout/checkout.jsx";
-import Shop from "./Routes/Shop/shop.jsx";
-import { checkUserSession } from "./Store/User/userAction.ts";
+import Home from "./Routes/Home/home";
+import NavigationBar from "./Routes/NavigationBar/navigationBar";
+import Authentication from "./Routes/Authentication/authentication";
+import Checkout from "./Routes/Checkout/checkout";
+import Shop from "./Routes/Shop/shop";
+import { checkUserSession } from "./Store/User/userAction";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { SignInContainer, ButtonsContainer } from "./signInForm-style.jsx";
-import FormInput from "../FormInput/formInput";
+import { SignInContainer, ButtonsContainer } from "./signInForm-style";
+import { FormInput } from "../FormInput/formInput";
 import { buttonType } from "../Button/button";
-import Button from "../Button/button";
+import { Button } from "../Button/button";
 import {
   googleSignInStart,
   emailSignInStart,
@@ -16,17 +16,17 @@ export default function SignInForm() {
   };
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       dispatch(emailSignInStart(email, password));
       setFormFields(defaultFormFields);
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === "auth/user-not-found") {
         alert("User not found " + error.message);
       }
@@ -61,7 +61,7 @@ export default function SignInForm() {
           onChange={handleChange}
         />
         <ButtonsContainer>
-          <Button button={"default"} type="submit">
+          <Button button={buttonType.default} type="submit">
             Sign In
           </Button>
           <Button

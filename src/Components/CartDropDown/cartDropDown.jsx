@@ -3,7 +3,7 @@ import {
   CartItemsContainer,
   EmptyMessage,
 } from "./cartDropDown-style.jsx";
-import Button from "../Button/button";
+import { Button } from "../Button/button";
 import CartItem from "../CartItem/cartItem";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";

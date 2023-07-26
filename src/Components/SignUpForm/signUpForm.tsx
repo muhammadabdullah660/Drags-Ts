@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { AuthError, AuthErrorCodes } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { signUpStart } from "../../Store/User/userAction";
-import FormInput from "../FormInput/formInput";
-import { SignUpContainer } from "./signUpForm-style.jsx";
-import Button from "../Button/button";
+import { FormInput } from "../FormInput/formInput";
+import { SignUpContainer } from "./signUpForm-style";
+import { Button, buttonType } from "../Button/button";
 export default function SignUpForm() {
   const dispatch = useDispatch();
   const defaultFormFields = {
@@ -14,11 +15,11 @@ export default function SignUpForm() {
   };
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     //console.log("submit");
     event.preventDefault();
     if (password !== confirmPassword) {
@@ -29,12 +30,12 @@ export default function SignUpForm() {
       dispatch(signUpStart(email, password, displayName));
       setFormFields(defaultFormFields);
     } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        alert("Email already in use " + error.message);
-      } else if (error.code === "auth/invalid-email") {
-        alert("Invalid Email " + error.message);
-      } else if (error.code === "auth/weak-password") {
-        alert("Weak Password " + error.message);
+      if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
+        alert("Email already in use ");
+      } else if ((error as AuthError).code === AuthErrorCodes.INVALID_EMAIL) {
+        alert("Invalid Email ");
+      } else if ((error as AuthError).code === AuthErrorCodes.WEAK_PASSWORD) {
+        alert("Weak Password ");
       }
       console.log(error);
     }
@@ -76,7 +77,7 @@ export default function SignUpForm() {
           value={confirmPassword}
           onChange={handleChange}
         />
-        <Button button={"default"} type="submit">
+        <Button button={buttonType.default} type="submit">
           Sign Up
         </Button>
       </form>

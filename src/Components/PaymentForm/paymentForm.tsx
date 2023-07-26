@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
@@ -7,11 +7,21 @@ import {
   PayNowButton,
 } from "./paymentForm-style.jsx";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { buttonType } from "../Button/button";
-import { selectCartTotal } from "../../Store/Cart/cartSelector";
-import { selectCurrentUser } from "../../Store/User/userSelector";
-import { emptyItemsFromCart } from "../../Store/Cart/cartActions";
+import { buttonType } from "../Button/button.js";
+import { selectCartTotal } from "../../Store/Cart/cartSelector.js";
+import { selectCurrentUser } from "../../Store/User/userSelector.js";
+import { emptyItemsFromCart } from "../../Store/Cart/cartActions.js";
+import { StripeCardElement } from "@stripe/stripe-js";
 
+const ifValidCardElement = (
+  cardElement: StripeCardElement | null
+): cardElement is StripeCardElement => {
+  if (cardElement === null) {
+    alert("Card details not found");
+    return false;
+  }
+  return true;
+};
 export default function PaymentForm() {
   const dispatch = useDispatch();
   const stripe = useStripe();
@@ -23,7 +33,7 @@ export default function PaymentForm() {
     dispatch(emptyItemsFromCart());
   };
 
-  const paymentHandler = async (e) => {
+  const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!stripe || !elements) {
       return;
@@ -41,9 +51,14 @@ export default function PaymentForm() {
     const {
       paymentIntent: { client_secret },
     } = response;
+    const cardDetails = elements.getElement(CardElement);
+    if (!ifValidCardElement(cardDetails)) {
+      alert("Card details not found");
+      return;
+    }
     const paymentResult = await stripe.confirmCardPayment(client_secret, {
       payment_method: {
-        card: elements.getElement(CardElement),
+        card: cardDetails,
         billing_details: {
           name: currentUser ? currentUser.displayName : "Guest User",
         },
