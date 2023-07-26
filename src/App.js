@@ -6,7 +6,7 @@ import NavigationBar from "./Routes/NavigationBar/navigationBar.jsx";
 import Authentication from "./Routes/Authentication/authentication.jsx";
 import Checkout from "./Routes/Checkout/checkout.jsx";
 import Shop from "./Routes/Shop/shop.jsx";
-import { checkUserSession } from "./Store/User/userAction.js";
+import { checkUserSession } from "./Store/User/userAction.ts";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

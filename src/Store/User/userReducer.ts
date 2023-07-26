@@ -1,5 +1,4 @@
 import { AnyAction } from "redux";
-import { USER_ACTION_TYPES } from "./userActionTypes";
 import {
   signInSuccess,
   signInFailure,

@@ -48,37 +48,35 @@ export type SetCartItemsAction = ActionWithPayload<
   CartItem[]
 >;
 
-export const setCartItems = withMatcher(
-  (cartItems: CartItem[]): SetCartItemsAction => {
-    return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems);
-  }
-);
+export const setCartItems = withMatcher((cartItems: CartItem[]) => {
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems);
+});
 
-export const setIsCartOpen = withMatcher(
-  (isCartOpen: boolean): SetIsCartOpenAction => {
-    return createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, isCartOpen);
-  }
-);
-export const addItemsIntoCart = withMatcher(
-  (cartItems: CartItem[], item: CategoryItem) => {
-    const newCartItems = addItems(cartItems, item);
-    return setCartItems(newCartItems);
-  }
-);
+export const setIsCartOpen = withMatcher((isCartOpen: boolean) => {
+  return createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, isCartOpen);
+});
+export const addItemsIntoCart = (cartItems: CartItem[], item: CategoryItem) => {
+  console.log("cartItems", cartItems, item);
+
+  const newCartItems = addItems(cartItems, item);
+  return setCartItems(newCartItems);
+};
 // Delete items from cart
-export const clearItemsFromCart = withMatcher(
-  (cartItems: CartItem[], item: CategoryItem) => {
-    const newCartItems = clearItems(cartItems, item);
-    return setCartItems(newCartItems);
-  }
-);
-export const deleteItemsFromCart = withMatcher(
-  (cartItems: CartItem[], item: CategoryItem) => {
-    const newCartItems = deleteItems(cartItems, item);
-    return setCartItems(newCartItems);
-  }
-);
-export const emptyItemsFromCart = withMatcher(() => {
+export const clearItemsFromCart = (
+  cartItems: CartItem[],
+  item: CategoryItem
+) => {
+  const newCartItems = clearItems(cartItems, item);
+  return setCartItems(newCartItems);
+};
+export const deleteItemsFromCart = (
+  cartItems: CartItem[],
+  item: CategoryItem
+) => {
+  const newCartItems = deleteItems(cartItems, item);
+  return setCartItems(newCartItems);
+};
+export const emptyItemsFromCart = () => {
   const newCartItems = emptyItems();
   return setCartItems(newCartItems);
-});
+};

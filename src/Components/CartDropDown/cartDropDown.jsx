@@ -7,7 +7,7 @@ import Button from "../Button/button";
 import CartItem from "../CartItem/cartItem";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCartItems } from "../../Store/Cart/cartSelector.js";
+import { selectCartItems } from "../../Store/Cart/cartSelector.ts";
 export default function CartDropDown() {
   const cartItems = useSelector(selectCartItems);
   const navigate = useNavigate();

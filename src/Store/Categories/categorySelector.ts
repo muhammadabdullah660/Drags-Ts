@@ -1,7 +1,10 @@
 import { createSelector } from "reselect";
 import { CategoriesState } from "./categoryReducer";
 import { CategoryMap } from "./categoryActionTypes";
-export const selectCategoryReducer = (state): CategoriesState => state.category;
+import { RootState } from "../store";
+
+export const selectCategoryReducer = (state: RootState): CategoriesState =>
+  state.category;
 export const selectCategories = createSelector(
   [selectCategoryReducer],
   //if above selector value changes, then only below selector is called
